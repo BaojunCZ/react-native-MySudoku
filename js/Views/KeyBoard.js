@@ -6,7 +6,6 @@ import {
     View,
     StyleSheet,
     Text,
-    ToastAndroid,
     Animated,
     TouchableOpacity,
 }from 'react-native';
@@ -27,7 +26,7 @@ export default class KeyBoard extends Component {
 
     constructor(props) {
         super(props);
-        let animated = new Array(11);
+        let animated = new Array(10);
         for (var i = 0; i < animated.length; i++) {
             animated[i] = new Animated.Value(0);
         }

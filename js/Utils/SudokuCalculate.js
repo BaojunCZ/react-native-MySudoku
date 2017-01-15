@@ -1,12 +1,9 @@
 /**
- * Created by Administrator on 2016/12/23.
+ * Created by Baojun on 2016/12/23.
  */
 //获取数独题目
 export function _getSudoku(hard) {
-    let Sudoku = 1;
-    // do {
-    Sudoku = _calculateData();
-    // } while (Sudoku == -1)
+    let Sudoku = _calculateData();
     for (let x = 0; x < 9; x++) {
         for (let y = 0; y < 9; y++) {
             Sudoku[x][y] = {num: Sudoku[x][y], type: 1}
@@ -94,6 +91,7 @@ export function _calculateData() {
 //校验数独
 export function _checkSudoku(Sudoku) {
     let result = {code: 0}
+    //检查时候有空格
     for (let x = 0; x < 9; x++) {
         for (let y = 0; y < 9; y++) {
             if (Sudoku[x][y].num == 0) {
@@ -104,18 +102,21 @@ export function _checkSudoku(Sudoku) {
     }
     for (let x = 0; x < 9; x++) {
         for (let y = 0; y < 9; y++) {
+            //行是否有相同
             for (let z = 8 - y; z > 0; z--) {
                 if (Sudoku[x][y].num == Sudoku[x][9 - z].num) {
                     result.msg = '错误，请检查'
                     return result
                 }
             }
+            //列是否有相同
             for (let z = 8 - x; z > 0; z--) {
                 if (Sudoku[x][y].num == Sudoku[9 - z][y].num) {
                     result.msg = '错误，请检查'
                     return result
                 }
             }
+            //九宫格是否相同
             let positionX = x % 3;
             let positionY = y % 3;
             for (let m = positionX + 1; m < 3; m++) {
